@@ -685,9 +685,6 @@ function get_artistas_evento($request){
 
 	$evento_id = $request['id'];
 
-	var_dump($evento_id);
-	die();
-
 	$table = $wpdb->prefix . 'artistas';
 	$sql = "SELECT * FROM $table WHERE evento_id = $evento_id;";
 
@@ -703,6 +700,6 @@ add_action('rest_api_init', function(){
 		register_rest_route($namespace, $base, array('methods' => 'GET', 'callback' => 'get_artistas')); 
 
 		$namespace = '/artistas';
-		$base = '/lista/evento/(?P<evento_id>\d+)';
+		$base = '/lista/evento/(?P<id>\d+)';
 		register_rest_route($namespace, $base, array('methods' => 'GET', 'callback' => 'get_artistas_evento', 'args'=>['id'] )); 
 });
